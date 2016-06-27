@@ -1,0 +1,25 @@
+.thumbnail {
+	max-height: 34px;
+	border: 1px solid red;
+}
+
+.thx {
+	max-height: 34px;
+	border: 1px solid red;
+}
+
+.border {
+	border: 2px solid red;
+}
+.border2 {
+	border: 2px solid yellow;
+}
+
+.square {
+	list-style-type: square;
+}
+
+.turf-master {
+	border-radius: 4px;
+	margin: 4px;
+}

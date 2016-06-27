@@ -11,32 +11,32 @@
  */
 
 import express from 'express';
-import graphQLHTTP from 'express-graphql';
 import path from 'path';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import {schema} from './data/schema';
 
 const APP_PORT = 3000;
-const GRAPHQL_PORT = 8080;
-
-// Expose a GraphQL endpoint
-const graphQLServer = express();
-graphQLServer.use('/', graphQLHTTP({schema, pretty: true}));
-graphQLServer.listen(GRAPHQL_PORT, () => console.log(
-  `GraphQL Server is now running on http://localhost:${GRAPHQL_PORT}`
-));
+const GRAPHQL_PORT = 7070;
 
 // Serve the Relay app
 const compiler = webpack({
-  entry: path.resolve(__dirname, 'js', 'app.js'),
+  entry: path.resolve(__dirname, 'js', 'index.js'),
   module: {
     loaders: [
       {
         exclude: /node_modules/,
         loader: 'babel',
-        test: /\.js$/,
+        test: /\.js$/
       },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style?sourceMap',
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          'postcss-loader'
+        ],
+      }
     ],
   },
   output: {filename: 'app.js', path: '/'},
